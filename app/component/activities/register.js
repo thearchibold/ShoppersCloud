@@ -80,9 +80,8 @@ Geocoder.init('AIzaSyAlaG5u1ScyhinG-TSErxbUl-IyVpYNg1U');
                 'Location helps discover items near you. \n Allow location services ',
                 [
                     {
-                        text: 'Cancel'
-                        , style: 'cancel'},
-                    {text: 'Allow',
+                        text: 'Cancel', style: 'cancel'},
+                       {text: 'Allow',
                         onPress: () => {
                         this.setState({
                             showmodal:true,
@@ -278,7 +277,7 @@ Geocoder.init('AIzaSyAlaG5u1ScyhinG-TSErxbUl-IyVpYNg1U');
                 animationType="fade"
                 transparent={false}
                 visible={this.state.showmodal}
-                onRequestClose={()=>{alert("List name closed")}}
+                onRequestClose={()=>{console.log("List name closed")}}
             >
 
                 <View style={{justifyContent:'center', alignItems:'center', height:'100%', width:'100%'}}>

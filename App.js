@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 
 
 //react-redux
-import { Provider, connect } from 'react-redux'
+import { Provider } from 'react-redux'
 import RootApp from './app/component'
 import configureStore from './app/redux/configureStore'
 

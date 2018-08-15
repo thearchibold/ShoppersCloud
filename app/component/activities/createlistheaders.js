@@ -32,15 +32,16 @@ import DateTimePicker from 'react-native-modal-datetime-picker'
      _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
      _handleDatePicked = (date) => {
+
          this.setState({
-             listdate:date.toDateString()
+             listdate:date.setHours(0,0,0).toDateString()
          })
          this._hideDateTimePicker();
      };
 
     render(){
         return(
-            <View style={{height:'100%', width:'100%'}}>
+            <View style={{height:'100%', width:'100%', backgroundColor:"white"}}>
             <View style={{height:'100%', width:'100%', justifyContent:'center', alignItems:'center',padding:20, flex:1}}>
                 <TextInput
                     style={{width:'100%', fontSize:16}}

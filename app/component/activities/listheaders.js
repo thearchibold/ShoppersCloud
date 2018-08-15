@@ -37,21 +37,9 @@ class ListHeaders extends Component{
                     data:list.currentlist
                 });
                 break;
-
-            case 'pastlist':
-                this.setState({
-                    data:list.pastlist
-                });
-                break;
             default: //do nothing
         }
         BackHandler.addEventListener('hardwareBackPress' , ()=>{Actions.dashboard(); return true});
-
-    }
-
-
-    componentWillUnmount(){
-        BackHandler.removeEventListener('hardwareBackPress' , ()=>{Actions.dashboard(); return true});
 
     }
 
@@ -69,7 +57,7 @@ class ListHeaders extends Component{
                 keyExtractor ={(item)=>{item.key}}
                 renderItem={({item, index}) =>
                     <Card
-                        elevation={1} style = {{ width:'100%', margin:5,shadowColor:'#ccc',
+                       style = {{elevation:1, width:'100%', margin:5,shadowColor:'#ccc',
                         height:70, flexDirection:'row'}}>
                         <TouchableOpacity
                             onPress={()=>{Actions.listdetails({listKey:item.key,listname:item.name, date:item.date})}}
@@ -124,11 +112,12 @@ class ListHeaders extends Component{
                         child.val()
                     )
                 }
-                this.setState({
-                    data: currentlist,
-                    refreshing: false
-                })
+
             });
+            this.setState({
+                data: currentlist,
+                refreshing: false
+            })
         });
     }
 
@@ -245,6 +234,13 @@ class ListHeaders extends Component{
         )
     }
 
+
+
+    componentWillUnmount(){
+        BackHandler.removeEventListener('hardwareBackPress' , ()=>{Actions.dashboard(); return true});
+
+    }
+
 }
 
 const css = StyleSheet.create({
@@ -273,9 +269,9 @@ const css = StyleSheet.create({
 
 
 function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;

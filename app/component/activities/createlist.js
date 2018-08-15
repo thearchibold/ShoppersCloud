@@ -64,8 +64,12 @@ class CreateList extends Component{
                                         listlink.child(key).set(listheader);
 
                                         let all_list = firebaseApp.database().ref().child("all-list").child(key);
-                                        //all_list.child("location").set(userdetails.coordinate);
                                         all_list.child("items").set(this.state.list);
+                                        if(userdetails.coordinate){
+                                            all_list.child("location/").set(userdetails.coordinate);
+
+                                        }
+
                                         this.props.fetctlist(pin);
 
                                         setTimeout(()=>{
@@ -78,7 +82,7 @@ class CreateList extends Component{
                                     flex: 1,
                                     justifyContent: 'flex-end',
                                     flexDirection: 'row',
-                                    alignItems: 'flex-end',
+                                    alignItems: 'center',
                                     margin: 10
                                 }}>
                                 <Text style = {{color:"green"}}>SUBMIT</Text>
@@ -150,7 +154,9 @@ class CreateList extends Component{
                             <View style ={{flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
                                 <View style={{justifyContent:'space-between', flexDirection:'row', flex:1}}>
                                     <Text style={{fontWeight:"900", fontSize:16}}>{item.name}</Text>
-                                    <TouchableOpacity><Icon name="ios-more-outline" size={24}/></TouchableOpacity>
+                                    <TouchableOpacity>
+                                        <Icon name="md-more" size={24}/>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
 

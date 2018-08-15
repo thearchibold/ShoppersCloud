@@ -115,6 +115,11 @@ export default  class ListStats extends  Component{
             </View>
         )
     }
+
+    componentWillUnmount(){
+        BackHandler.removeEventListener('hardwareBackPress', ()=> Actions.dashboard());
+
+    }
 }
 
 

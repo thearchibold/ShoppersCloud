@@ -17,8 +17,11 @@ import ListStats from './activities/liststatistic'
 import ListSettings from './activities/listsettings'
 import ShopperCloud from './activities/shoppercloud'
 import CreateListHeaders from './activities/createlistheaders'
+import ExpiredList from './activities/expiredlist';
 import ListDetails from './activities/listdetails'
 import firebaseApp from './_sharedComponent/firebase_connector'
+import Details from './activities/othersdetails';
+import PastList  from './activities/pastlist'
 import {connect} from "react-redux";
 
 
@@ -47,9 +50,6 @@ class RootApp extends Component{
     }
 
 
-
-
-
 render() {
 
     return (
@@ -67,6 +67,9 @@ render() {
                     <Scene key='shopperscloud' hideNavBar component={ShopperCloud}/>
                     <Scene key='createlistheader' hideNavBar component={CreateListHeaders}/>
                     <Scene key='listdetails' hideNavBar component={ListDetails}/>
+                    <Scene key='expiredlist' hideNavBar component={ExpiredList}/>
+                    <Scene key='details' hideNavBar component={Details}/>
+                    <Scene key='pastlist' hideNavBar component={PastList}/>
                 </Scene>
 
             </Router>

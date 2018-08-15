@@ -82,7 +82,7 @@ class PinPage extends Component {
                         padding: 10, justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                        <Image source={require('../images/locked-padlock.png')}/>
+                        <Image source={require('../../assets/images/locked-padlock.png')}/>
                     </View>
                 </View>
 
@@ -128,11 +128,17 @@ class PinPage extends Component {
 
                                 if (error) {
                                     this.setState({showmodal: false});
-                                    alert(error.message)
+                                    Alert.alert(
+                                        'Error!',
+                                        error.message
+                                            [{text: 'OK', style: 'cancel'}],
+                                        {cancelable: true}
+                                    )
+                                    console.log(error.message)
                                 }
                                 else {
                                     setTimeout(() => {
-                                        if (result) {
+
                                             let user = firebaseApp.auth().currentUser;
                                             this._storePin(user.uid);
                                             this.props.saveUserDetails(user.uid);
@@ -141,15 +147,6 @@ class PinPage extends Component {
                                             this.props.fetchList(user.uid);
                                             Actions.dashboard();
                                             this.setState({showmodal: false});
-                                        } else {
-                                            this.setState({showmodal: false});
-                                            Alert.alert(
-                                                'Error!',
-                                                error.message
-                                                    [{text: 'OK', style: 'cancel'}],
-                                                {cancelable: true}
-                                            )
-                                        }
                                     }, 3000)
                                 }
 

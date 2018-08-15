@@ -2,7 +2,7 @@
  * Created by archibold on 15/07/2018.
  */
 import React,{Component} from 'react'
-import  {View,TouchableOpacity, AsyncStorage, Text, StyleSheet,ScrollView, BackHandler} from 'react-native'
+import  {View, TouchableOpacity, AsyncStorage, Text, StyleSheet, ScrollView, BackHandler, Picker} from 'react-native'
 import {Actions} from 'react-native-router-flux'
 import NavBar from '../_sharedComponent/navBar'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -13,11 +13,14 @@ import firebaseApp from '../_sharedComponent/firebase_connector'
 
 class Account extends Component{
     constructor(props){
-        super(props)
+        super(props);
+        this.state={
+            distance:"10"
+        }
     }
 
     componentWillMount(){
-        BackHandler.addEventListener('hardwareBackPress', ()=>{BackHandler.exitApp()});
+        BackHandler.addEventListener('hardwareBackPress', ()=>{Actions.pop(); return true});
 
     }
 
@@ -59,33 +62,14 @@ class Account extends Component{
                         </TouchableOpacity>
                     }
                 />
-                <View style={{flex:1,justifyContent:'center', alignItems:'center',backgroundColor:'#cbcbcb'}}>
-                    <MapView
-                        style={{height:'100%', width:'100%'}}
-                         region={{
-                                latitude: userdetails.coordinate.lat,
-                                longitude: userdetails.coordinate.longitude,
-
-                                latitudeDelta: 0.1,
-                                longitudeDelta: 0.1
-
-                        }}
-                    >
-                        <MapView.Marker
-                            coordinate= {{
-                                latitude: userdetails.coordinate.lat,
-                                longitude: userdetails.coordinate.longitude,
-
-                            }}
-                            title={"Home Location"}
-                        />
-                        <View style={{justifyContent:'flex-end', flex:1, alignItems:'flex-end',padding:6}}>
+                <View style={{flex:1,justifyContent:'center', alignItems:'center',backgroundColor:'#dedede', padding:10}}>
+                    <View style={{backgroundColor:"green",justifyContent:"center", alignItems:"center",  height:70, width:70, borderRadius:70}}>
+                        <Text style={{color:"white", fontSize:20, fontWeight:"bold"}}>AB</Text>
+                    </View>
+                    <View style={{flex:1, alignItems:'flex-end',padding:6}}>
                         <Text style={{color:'#0a2b55',fontSize:18, fontWeight:"900"}}>{userdetails.name}</Text>
-                        <Text style={{color:'#dd5a1f', fontSize:14, fontWeight:"450"}}>{userdetails.email}</Text>
-                        </View>
-                    </MapView>
-
-
+                        <Text style={{color:'#dd5a1f', fontSize:14, fontWeight:"400"}}>{userdetails.email}</Text>
+                    </View>
                 </View>
 
                 <View
@@ -114,11 +98,42 @@ class Account extends Component{
 
                     <View style = {{height:0.8, width:'100%', backgroundColor:'#cbcbcb',marginTop:10, marginBottom:10}}/>
                 </View>
+                <View style={{height:120, padding:10,backgroundColor:"white" }}>
+                <MapView
 
+                    style={{height:'100%', width:'100%'}}
+                    region={{
+                        latitude: userdetails.coordinate ? userdetails.coordinate.lat: 0 ,
+                        longitude: userdetails.coordinate ? userdetails.coordinate.longitude : 0,
+
+                        latitudeDelta: 0.01,
+                        longitudeDelta: 0.01
+
+                    }}
+                >
+                    <MapView.Marker
+                        coordinate= {{
+                            latitude: userdetails.coordinate ?userdetails.coordinate.lat: 0 ,
+                            longitude: userdetails.coordinate ? userdetails.coordinate.longitude : 0,
+
+
+                        }}
+                        title={"Home Location"}
+                    />
+
+                </MapView>
+                </View>
             </View>
         )
     }
+
+    componentWillUnmount(){
+        BackHandler.removeEventListener('hardwareBackPress', ()=>{Actions.pop(); return true});
+
+    }
 }
+
+
 
 
 const css = StyleSheet.create({

@@ -7,7 +7,6 @@ import store from '../store'
 export const  listReducer = (state = store, action) => {
     switch (action.type){
         case SAVE_LIST:
-
             return{
                 ...state,
                 currentlist: action.currentList,
@@ -15,10 +14,19 @@ export const  listReducer = (state = store, action) => {
             };
 
         case UPDATE_LIST:
-            return{
-                ...state,
-                currentlist:action.list
-            };
+            if(action.toUpdate === 'currentlist') {
+                return {
+                    ...state,
+                    currentlist: action.list
+                };
+            }
+            if(action.toUpdate === 'pastlist'){
+                alert(action.toUpdate);
+                return {
+                    ...state,
+                    pastlist: action.list
+                };
+            }
         case OFFLINE:
             return{
                 ...state,

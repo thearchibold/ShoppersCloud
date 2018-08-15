@@ -9,8 +9,7 @@ import {savePin, fetchUser, fetchUserList} from '../../redux/actions'
 import Icon from 'react-native-vector-icons/Ionicons'
 import firebaseApp from '../_sharedComponent/firebase_connector'
 import Spinner from 'react-native-spinkit'
-import GeneratePDF from '../_sharedComponent/generatePDF'
-
+import {getRandomColor} from '../_sharedComponent/generatePDF'
 
 
 class WelcomePage extends Component{
@@ -22,17 +21,17 @@ class WelcomePage extends Component{
     }
 
     async componentWillMount(){
-        GeneratePDF("Archibold is generating this PDF");
+
        let value  = await AsyncStorage.getItem('user');
        console.log(JSON.parse(value));
        this.setState({value:value})
     }
 
-    async componentDidMount(){
+  /*  async componentDidMount(){
         let value  = await AsyncStorage.getItem('user');
         console.log(JSON.parse(value));
         this.setState({value: value !== null ? value:"Login"})
-    }
+    }*/
      continueToPage = async () => {
 
                  if(this.state.value !== null) {
@@ -59,19 +58,16 @@ class WelcomePage extends Component{
 
 
         return(
-            <ImageBackground
-                style = {{width:'100%', height:'100%', flex:1}}
-                source = {require('../images/markelist.jpg')}
-            >
-
-                <View style={styles.linearGradient}>
-
-                    <View style={{flex:1, justifyContent:'center'}}>
-
-                        <Text style = {{alignSelf:'center', color:'white',fontWeight:"900"}} >Shopping just got better</Text>
+            <View style={{flex:1, backgroundColor:"white", justifyContent:"center"}}>
+                <View style={{ flex:1, justifyContent:"center",  marginTop:-100, alignItems:"center"}}>
+                    <View style={{flexDirection:"row"}}>
+                        <Icon name="ios-cloud" size={33} color="#8d2b0b"/>
+                        <Text style = {{color:"#8d2b0b", fontSize:24,margin:1, fontWeight:"bold"}}>SHOPPERS</Text>
+                        <Text style = {{color:"#ff651c", fontSize:24,margin:1}}>CLOUD</Text>
 
                     </View>
-
+                    <Text style={{color:"#8d2b0b",fontSize:10}}>version 0.1.0</Text>
+                </View>
                     <View style={{padding:10}}>
                         <TouchableOpacity
                             onPress={()=> this.continueToPage() } style={styles.contButton}>
@@ -95,8 +91,7 @@ class WelcomePage extends Component{
                         }}>
                         </View>
                     </View>
-                </View>
-            </ImageBackground>
+            </View>
 
         )
     }
@@ -115,7 +110,7 @@ const styles = StyleSheet.create({
     },
     contButton:{
         padding:10,
-        backgroundColor:"green",
+        backgroundColor:getRandomColor(),
         borderRadius:20,
         alignSelf:"center",
         width:'40%',

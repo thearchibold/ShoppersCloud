@@ -37,10 +37,7 @@ class ListSettings extends Component {
         })
 
     }
-    componentWillUnmount(){
-        BackHandler.removeEventListener('hardwareBackPressed', ()=>{Actions.pop() ; return true});
 
-    }
 
     _showDateTimePicker = (index) => this.setState({ isDateTimePickerVisible: true, item:index });
 
@@ -247,6 +244,11 @@ class ListSettings extends Component {
             {this.renderData(this.state.data)}
         </View>
         )
+    }
+
+    componentWillUnmount(){
+        BackHandler.removeEventListener('hardwareBackPressed', ()=>{Actions.pop() ; return true});
+
     }
 }
 

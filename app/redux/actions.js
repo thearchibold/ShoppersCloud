@@ -77,9 +77,11 @@ export function fetchUser(pin) {
 export function fetchUserList(pin) {
 
     let dateNow = new Date();
-/*
-    alert("date now " +dateNow);
-*/
+    dateNow.setHours(0);
+    dateNow.setMinutes(0);
+    dateNow.setSeconds(0);
+    dateNow = dateNow.setMilliseconds(0);
+
     let currentList = [];
     let pastList = [];
 
@@ -88,9 +90,12 @@ export function fetchUserList(pin) {
         listLink.once('value', (snap) => {
             snap.forEach((child) => {
                 let listdate = child.val().date;
-                listdate = new Date(listdate).getTime();
-                console.log(child.val());
-                if(dateNow === listdate || listdate > dateNow){
+                listdate = new Date(listdate);
+                listdate.setHours(0);
+                listdate.setMinutes(0);
+                listdate.setSeconds(0);
+                listdate = listdate.setMilliseconds(0);
+                if(dateNow <= listdate ){
                     currentList.push(
                         child.val()
                     )
@@ -109,11 +114,12 @@ export function fetchUserList(pin) {
     }
 }
 
-export function updateUserList(list) {
+export function updateUserList(list, toUpdate='pastlist') {
     return (dispatch)=>{
        dispatch({
            type:UPDATE_LIST,
-           list
+           list,
+           toUpdate
        })
     }
 

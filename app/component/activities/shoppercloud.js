@@ -75,7 +75,7 @@ class ShopperCloud extends Component{
                                 longitude: this.state.longitude - 0.001,
                             }}
                             title={"Cloud shopper 1"}
-                            image={require('../images/cart.png')}
+                            image={require('../../assets/images/cart.png')}
                         />
                         <Marker
                             coordinate={{
@@ -83,7 +83,7 @@ class ShopperCloud extends Component{
                                 longitude: this.state.longitude - 0.002,
                             }}
                             title={"Cloud shopper 2"}
-                            image={require('../images/cart.png')}
+                            image={require('../../assets/images/cart.png')}
                         />
                         <Marker
                             coordinate={{
@@ -91,7 +91,7 @@ class ShopperCloud extends Component{
                                 longitude: this.state.longitude - 0.0005,
                             }}
                             title={"Cloud shopper 3"}
-                            image={require('../images/cart.png')}
+                            image={require('../../assets/images/cart.png')}
                         />
                         <Marker
                             coordinate={{
@@ -99,7 +99,7 @@ class ShopperCloud extends Component{
                                 longitude: this.state.longitude,
                             }}
                             title={"Shopper cloud 2"}
-                            image={require('../images/cart.png')}
+                            image={require('../../assets/images/cart.png')}
                         />
                     </MapView>
 
@@ -115,7 +115,7 @@ class ShopperCloud extends Component{
                                             <Text style={{fontSize:16, color:"#726f6f"}}>{item.name}</Text>
                                             <Rating
                                                 type='custom'
-                                                ratingImage={require('../images/cart.png')}
+                                                ratingImage={require('../../assets/images/cart.png')}
                                                 ratingBackgroundColor='#fff'
                                                 ratingColor="#fff"
                                                 ratingCount={item.rating}
